@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libros — Librería TU-CO</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a href="#contenido" class="salto-contenido visualmente-oculto">Saltar al contenido</a>
+
+  <header>
+    <p class="marca">Librería TU-CO</p>
+
+    <nav class="navegacion" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Catálogo</a></li>
+        <li><a href="libros.html" aria-current="page">Libros</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="ventas.html">Ventas</a></li>
+        <li><a href="historial.html">Historial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <div id="tuco-mensajes" role="status" aria-live="polite" class="visualmente-oculto"></div>
+    <h1>Libros</h1>
+
+    <section aria-labelledby="titulo-alta-libro">
+      <h2 id="titulo-alta-libro">Registrar libro</h2>
+
+      <form id="form-libro" method="post" novalidate class="formulario">
+        <p id="resumen-errores-libro" class="mensaje mensaje--error" role="alert" hidden></p>
+
+        <p class="campo">
+          <label for="titulo">Título</label>
+          <input type="text" id="titulo" name="titulo" maxlength="255" aria-describedby="error-titulo">
+        </p>
+        <div id="error-titulo" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="isbn">ISBN</label>
+          <input type="text" id="isbn" name="isbn" maxlength="17" aria-describedby="error-isbn">
+        </p>
+        <div id="error-isbn" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="precio">Precio</label>
+          <input type="number" id="precio" name="precio" min="0.01" step="0.01" aria-describedby="error-precio">
+        </p>
+        <div id="error-precio" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="stock">Stock</label>
+          <input type="number" id="stock" name="stock" min="0" step="1" aria-describedby="error-stock">
+        </p>
+        <div id="error-stock" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="editorialId">Editorial</label>
+          <select id="editorialId" name="editorialId" aria-describedby="error-editorialId">
+            <option value="" disabled selected>Cargando editoriales…</option>
+          </select>
+        </p>
+        <div id="error-editorialId" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="generoId">Género (opcional)</label>
+          <select id="generoId" name="generoId" aria-describedby="error-generoId">
+            <option value="" selected>Sin clasificar</option>
+          </select>
+        </p>
+        <div id="error-generoId" class="mensaje mensaje--error" hidden></div>
+
+        <fieldset class="campo campo--completo">
+          <legend>Autores</legend>
+          <p class="campo">
+            <label for="autor-select">Autor</label>
+            <select id="autor-select">
+              <option value="" disabled selected>Cargando autores…</option>
+            </select>
+          </p>
+          <p class="campo">
+            <label for="autor-rol">Rol</label>
+            <select id="autor-rol">
+              <option value="autor" selected>Autor</option>
+              <option value="coautor">Coautor</option>
+              <option value="traductor">Traductor</option>
+              <option value="ilustrador">Ilustrador</option>
+            </select>
+          </p>
+          <button type="button" id="autor-agregar" class="boton boton--secundario">Agregar autor</button>
+          <ol id="autores-elegidos" aria-label="Autores del libro (el orden es el de la lista)"></ol>
+          <p id="autores-vacio" class="mensaje mensaje--vacio">Todavía no agregaste autores.</p>
+          <div id="error-autorIds" class="mensaje mensaje--error" hidden></div>
+        </fieldset>
+
+        <button type="submit" id="boton-libro" class="boton boton--primario">Registrar libro</button>
+      </form>
+
+      <p id="mensaje-libro" role="status" hidden class="mensaje"></p>
+    </section>
+
+    <section aria-labelledby="titulo-listado-libros">
+      <h2 id="titulo-listado-libros">Libros registrados</h2>
+
+      <p id="mensaje-libros-cargando" role="status" hidden class="mensaje mensaje--info">Cargando libros…</p>
+      <p id="mensaje-libros-error" role="alert" hidden class="mensaje mensaje--error"></p>
+      <p id="mensaje-libros-vacio" role="status" hidden class="mensaje mensaje--vacio">Todavía no hay libros registrados.</p>
+
+      <div class="tabla-contenedor" role="region" tabindex="0" aria-label="Libros registrados, tabla desplazable">
+        <table id="tabla-libros" class="tabla tabla--ancha">
+          <caption>Libros registrados (primeros 20)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">ISBN</th>
+              <th scope="col">Editorial</th>
+              <th scope="col">Género</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Autores</th>
+              <th scope="col">Precio</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Librería TU-CO — Trabajo Práctico Integrador</p>
+  </footer>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/formato.js" defer></script>
+  <script src="js/libros.js" defer></script>
+</body>
+</html>

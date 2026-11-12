@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial — Librería TU-CO</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a href="#contenido" class="salto-contenido visualmente-oculto">Saltar al contenido</a>
+
+  <header>
+    <p class="marca">Librería TU-CO</p>
+
+    <nav class="navegacion" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Catálogo</a></li>
+        <li><a href="libros.html">Libros</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="ventas.html">Ventas</a></li>
+        <li><a href="historial.html" aria-current="page">Historial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <div id="tuco-mensajes" role="status" aria-live="polite" class="visualmente-oculto"></div>
+    <h1>Historial</h1>
+
+    <section aria-labelledby="titulo-listado-ventas">
+      <h2 id="titulo-listado-ventas">Ventas registradas</h2>
+
+      <p id="mensaje-historial-cargando" role="status" hidden class="mensaje mensaje--info">Cargando historial…</p>
+      <p id="mensaje-historial-vacio" role="status" hidden class="mensaje mensaje--vacio">Todavía no hay ventas confirmadas.</p>
+      <div id="mensaje-historial-error" role="alert" hidden class="mensaje mensaje--error">
+        <span id="texto-historial-error"></span>
+        <button type="button" id="boton-reintentar" class="boton boton--secundario boton--pequeno">Reintentar</button>
+      </div>
+
+      <div class="tabla-contenedor" role="region" tabindex="0" aria-label="Ventas confirmadas, tabla desplazable">
+        <table id="tabla-ventas" class="tabla tabla--ancha">
+          <caption>Ventas confirmadas</caption>
+          <thead>
+            <tr>
+              <th scope="col">Identificador</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Total</th>
+              <th scope="col">Detalle</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <nav id="paginacion-historial" aria-label="Paginación del historial" class="paginacion" hidden>
+        <button type="button" id="pagina-anterior" class="boton boton--secundario">Anterior</button>
+        <span id="pagina-indicador" aria-live="polite"></span>
+        <button type="button" id="pagina-siguiente" class="boton boton--secundario">Siguiente</button>
+      </nav>
+    </section>
+  </main>
+
+  <footer>
+    <p>Librería TU-CO — Trabajo Práctico Integrador</p>
+  </footer>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/formato.js" defer></script>
+  <script src="js/historial.js" defer></script>
+</body>
+</html>

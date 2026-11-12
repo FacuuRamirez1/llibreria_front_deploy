@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventas — Librería TU-CO</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a href="#contenido" class="salto-contenido visualmente-oculto">Saltar al contenido</a>
+
+  <header>
+    <p class="marca">Librería TU-CO</p>
+
+    <nav class="navegacion" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Catálogo</a></li>
+        <li><a href="libros.html">Libros</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="ventas.html" aria-current="page">Ventas</a></li>
+        <li><a href="historial.html">Historial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <div id="tuco-mensajes" role="status" aria-live="polite" class="visualmente-oculto"></div>
+    <h1>Ventas</h1>
+
+    <section aria-labelledby="titulo-composicion">
+      <h2 id="titulo-composicion">Composición de la venta</h2>
+
+      <p id="resumen-errores-venta" class="mensaje mensaje--error" role="alert" hidden></p>
+
+      <form id="form-venta" method="post" novalidate class="formulario">
+        <p class="campo">
+          <label for="clienteId">Cliente</label>
+          <select id="clienteId" name="clienteId" aria-describedby="error-clienteId">
+            <option value="" disabled selected>Cargando clientes…</option>
+          </select>
+        </p>
+        <div id="error-clienteId" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="buscar-libro">Buscar libro por título</label>
+          <input type="search" id="buscar-libro" name="buscar-libro" autocomplete="off">
+        </p>
+
+        <p class="campo">
+          <label for="libroId">Libro</label>
+          <select id="libroId" name="libroId" aria-describedby="error-libroId">
+            <option value="" disabled selected>Cargando libros…</option>
+          </select>
+        </p>
+        <div id="error-libroId" class="mensaje mensaje--error" hidden></div>
+
+        <p class="campo">
+          <label for="cantidad">Cantidad</label>
+          <input type="number" min="1" step="1" value="1" id="cantidad" name="cantidad" aria-describedby="error-cantidad">
+        </p>
+        <div id="error-cantidad" class="mensaje mensaje--error" hidden></div>
+
+        <button type="submit" id="boton-agregar" class="boton boton--secundario">Agregar renglón</button>
+      </form>
+
+      <div class="tabla-contenedor" role="region" tabindex="0" aria-label="Renglones de la venta, tabla desplazable">
+        <table id="tabla-renglones" class="tabla tabla--ancha">
+          <caption>Renglones de la venta (borrador)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Libro</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio del catálogo</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <p id="mensaje-venta" role="status" class="mensaje mensaje--info">Todavía no se agregaron renglones a la venta.</p>
+
+      <button type="button" id="boton-confirmar" class="boton boton--primario">Confirmar venta</button>
+    </section>
+
+    <section id="seccion-confirmada" aria-labelledby="titulo-confirmada" hidden>
+      <h2 id="titulo-confirmada">Venta confirmada</h2>
+      <p id="texto-confirmada" role="status" class="mensaje mensaje--exito"></p>
+      <div class="tabla-contenedor" role="region" tabindex="0" aria-label="Renglones de la venta confirmada, tabla desplazable">
+        <table id="tabla-confirmada" class="tabla tabla--ancha">
+          <caption>Importes registrados por el servidor</caption>
+          <thead>
+            <tr>
+              <th scope="col">Libro</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio unitario</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="campo">Total: <output id="total-confirmada" class="badge badge--total"></output></p>
+      <p><a id="enlace-confirmada" href="historial.html" class="boton boton--secundario">Ver detalle en el historial</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Librería TU-CO — Trabajo Práctico Integrador</p>
+  </footer>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/formato.js" defer></script>
+  <script src="js/ventas.js" defer></script>
+</body>
+</html>

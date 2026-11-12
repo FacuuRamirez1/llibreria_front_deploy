@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo — Librería TU-CO</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a href="#contenido" class="salto-contenido visualmente-oculto">Saltar al contenido</a>
+
+  <header>
+    <p class="marca">Librería TU-CO</p>
+
+    <nav class="navegacion" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html" aria-current="page">Catálogo</a></li>
+        <li><a href="libros.html">Libros</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="ventas.html">Ventas</a></li>
+        <li><a href="historial.html">Historial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <div id="tuco-mensajes" role="status" aria-live="polite" class="visualmente-oculto"></div>
+    <h1>Catálogo</h1>
+
+    <section aria-labelledby="titulo-busqueda">
+      <h2 id="titulo-busqueda">Buscar por título</h2>
+
+      <form method="get" novalidate class="formulario formulario--busqueda">
+        <label for="buscador-titulo">Título del libro</label>
+        <input type="search" id="buscador-titulo" name="titulo">
+      </form>
+
+      <p id="mensaje-catalogo-cargando" role="status" hidden class="mensaje mensaje--info">Cargando catálogo…</p>
+      <p id="mensaje-catalogo-vacio" role="status" hidden class="mensaje mensaje--vacio">Todavía no hay libros en el catálogo.</p>
+      <p id="mensaje-sin-resultados" aria-live="polite" hidden class="mensaje mensaje--info">No se encontraron libros para el título buscado.</p>
+      <div id="mensaje-catalogo-error" role="alert" hidden class="mensaje mensaje--error">
+        <span id="texto-catalogo-error"></span>
+        <button type="button" id="boton-reintentar" class="boton boton--secundario boton--pequeno">Reintentar</button>
+      </div>
+
+      <div id="listado-catalogo" class="grilla-catalogo"></div>
+
+      <nav id="paginacion-catalogo" aria-label="Paginación del catálogo" class="paginacion" hidden>
+        <button type="button" id="pagina-anterior" class="boton boton--secundario">Anterior</button>
+        <span id="pagina-indicador" aria-live="polite"></span>
+        <button type="button" id="pagina-siguiente" class="boton boton--secundario">Siguiente</button>
+      </nav>
+    </section>
+
+    <template id="plantilla-tarjeta-libro">
+      <article class="tarjeta">
+        <img src="assets/portadas/portada-placeholder.svg" alt="Portada no disponible" width="200" height="300">
+        <h3 class="tarjeta-titulo"></h3>
+        <p class="tarjeta-isbn"></p>
+        <p class="tarjeta-editorial"></p>
+        <p class="tarjeta-genero badge"></p>
+        <p class="tarjeta-autores" aria-live="polite"></p>
+        <p class="tarjeta-precio"></p>
+        <button type="button" class="boton boton--secundario boton--pequeno tarjeta-ver-autores">Ver autores</button>
+      </article>
+    </template>
+  </main>
+
+  <footer>
+    <p>Librería TU-CO — Trabajo Práctico Integrador</p>
+  </footer>
+  <script src="js/api.js" defer></script>
+  <script src="js/formato.js" defer></script>
+  <script src="js/catalogo.js" defer></script>
+</body>
+</html>
